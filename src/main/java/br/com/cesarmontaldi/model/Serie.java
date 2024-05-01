@@ -2,17 +2,32 @@ package br.com.cesarmontaldi.model;
 
 import br.com.cesarmontaldi.service.ConsultaChatGPT;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import jakarta.persistence.*;
 
 import java.util.OptionalDouble;
 
+@Entity
+@Table(name = "series")
 public class Serie {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
     private String title;
+
     private Integer totalTemporadas;
+
     private Double avaliacao;
+
+    @Enumerated(EnumType.STRING)
     private Categoria genero;
+
     private String atores;
+
     private String poster;
+
     private String sinopse;
 
     public Serie(DadosSerie dadosSerie) {
@@ -26,6 +41,12 @@ public class Serie {
         //this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse()).trim();
     }
 
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getTitle() {
         return title;
     }
