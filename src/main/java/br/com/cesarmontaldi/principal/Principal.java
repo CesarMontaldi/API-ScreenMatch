@@ -19,7 +19,7 @@ public class Principal {
     private ConverterDados converter = new ConverterDados();
 
     private final String URL_API = "https://www.omdbapi.com/?t=";
-    private final String API_KEY = "&apikey=c78ff0b";
+    private final String API_KEY = System.getenv("OMDB_API_KEY");
     private List<DadosSerie> listSeries = new ArrayList<>();
 
     public void exibeMenu() {
@@ -96,4 +96,5 @@ public class Principal {
                 .sorted(Comparator.comparing(Serie::getGenero))
                     .forEach(System.out::println);
     }
+
 }
